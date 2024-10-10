@@ -20,14 +20,10 @@ public class World {
 
             switch (directions[i]){
 
-                case FORWARD:  System.out.println("Zwierzak idzie do przodu");
-                    break;
-                case BACKWARD: System.out.println("Zwierzak idzie do tylu");
-                    break;
-                case RIGHT: System.out.println("Zwierzak skreca w prawo");
-                    break;
-                case LEFT: System.out.println("Zwierzak skreca w lewo");
-                    break;
+                case FORWARD -> System.out.println("Zwierzak idzie do przodu");
+                case BACKWARD -> System.out.println("Zwierzak idzie do tylu");
+                case RIGHT -> System.out.println("Zwierzak skreca w prawo");
+                case LEFT -> System.out.println("Zwierzak skreca w lewo");
             }
 
         }
