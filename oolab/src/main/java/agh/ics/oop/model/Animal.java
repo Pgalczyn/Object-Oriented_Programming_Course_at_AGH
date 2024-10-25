@@ -17,9 +17,17 @@ public class Animal {
         this.location = vector;
     }
 
+    public MapDirection getOrientation() {
+        return this.orientation;
+    }
+
     @Override
     public String toString() {
-        return "Animal [orientation=" + orientation + ", location=" + location + "]";
+        return " [orientation=" + orientation + ", location=" + location + "]";
+    }
+
+    public Vector2d getLocation() {
+        return this.location;
     }
 
     public boolean IsAt(Vector2d position){
@@ -34,8 +42,20 @@ public class Animal {
 
             case LEFT -> this.orientation = this.orientation.previous();
             case RIGHT -> this.orientation = this.orientation.next();
-            case BACKWARD -> this.location = this.location.subtract(this.orientation.toUnitVector());
-            case FORWARD -> this.location = this.location.add(this.orientation.toUnitVector());
+            case BACKWARD ->{
+                Vector2d newLocation = this.location.subtract(this.orientation.toUnitVector());
+                if (newLocation.getX() < 5 && newLocation.getY() > -1 && newLocation.getY() < 5 && newLocation.getX() > -1){
+                    location = newLocation;
+                }
+            }
+            case FORWARD ->{
+                Vector2d newLocation = this.location.add(this.orientation.toUnitVector());
+                if (newLocation.getX() < 5 && newLocation.getY() > -1 && newLocation.getY() < 5 && newLocation.getX() > -1){
+                    location = newLocation;
+                }
+
+                }
+
         }
 
 

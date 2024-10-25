@@ -7,7 +7,7 @@ import java.util.List;
 
 public class OptionsParser {
 
-    public static MoveDirection[] parse(String[] args){
+    public static List<MoveDirection> parse(String[] args){
 
         List<MoveDirection> moves = new ArrayList<MoveDirection>();
 
@@ -25,7 +25,7 @@ public class OptionsParser {
             }
 
         }
-        return moves.toArray(new MoveDirection[0]);
+        return moves;
     }
 
 }
