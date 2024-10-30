@@ -18,13 +18,17 @@ public class OptionsParserTest {
     public void testParseOptions() {
 
 
-        MoveDirection[] expectedMoves = {FORWARD, FORWARD,BACKWARD, BACKWARD};
+        List<MoveDirection> expectedMoves = new ArrayList<>();
+        expectedMoves.add(FORWARD);
+        expectedMoves.add(FORWARD);
+        expectedMoves.add(BACKWARD);
+        expectedMoves.add(BACKWARD);
 
         String[] args = {"f", "f", "b","b"};
 
-        MoveDirection[] parsedMoves = OptionsParser.parse(args);
+        List<MoveDirection> parsedMoves = OptionsParser.parse(args);
         
-        assertArrayEquals(expectedMoves, parsedMoves);
+        assertEquals(expectedMoves, parsedMoves);
 
     }
 
