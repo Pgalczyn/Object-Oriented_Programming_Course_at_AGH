@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class RectangularMap implements WorldMap {
 
-    Map<Vector2d, Animal> animals = new HashMap<>();
+    public Map<Vector2d, Animal> animals = new HashMap<>();
 
     private final int width;
     private final  int height;
@@ -16,6 +16,7 @@ public class RectangularMap implements WorldMap {
         this.width = width;
         this.height = height;
     }
+
 
     @Override
     public boolean place(Animal animal) {
