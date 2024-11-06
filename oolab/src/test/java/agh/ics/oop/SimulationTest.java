@@ -1,9 +1,6 @@
 package agh.ics.oop;
 
-import agh.ics.oop.model.Animal;
-import agh.ics.oop.model.MapDirection;
-import agh.ics.oop.model.MoveDirection;
-import agh.ics.oop.model.Vector2d;
+import agh.ics.oop.model.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -19,7 +16,7 @@ class SimulationTest {
         List<Vector2d> positions = List.of(new Vector2d(0, 0), new Vector2d(1, 0), new Vector2d(2, 0));
         List<MoveDirection> directions = List.of(MoveDirection.LEFT, MoveDirection.LEFT, MoveDirection.LEFT, MoveDirection.FORWARD);
 
-        Simulation simulation = new Simulation(positions, directions);
+        Simulation simulation = new Simulation(positions, directions,new RectangularMap(10,10));
         simulation.run();
 
         List<Animal> animals = simulation.getAnimals();
@@ -42,7 +39,7 @@ class SimulationTest {
         List<Vector2d> positions = List.of(new Vector2d(0, 0), new Vector2d(1, 0), new Vector2d(2, 0));
         List<MoveDirection> directions = List.of(MoveDirection.LEFT, MoveDirection.LEFT, MoveDirection.LEFT, MoveDirection.RIGHT, MoveDirection.RIGHT, MoveDirection.RIGHT);
 
-        Simulation simulation = new Simulation(positions, directions);
+        Simulation simulation = new Simulation(positions, directions,new RectangularMap(10,10));
         simulation.run();
 
         List<Animal> animals = simulation.getAnimals();
@@ -68,7 +65,7 @@ class SimulationTest {
                 );
 
 
-        Simulation simulation = new Simulation(positions, directions);
+        Simulation simulation = new Simulation(positions, directions,new RectangularMap(10,10));
         simulation.run();
 
         List<Animal> animals = simulation.getAnimals();
@@ -93,7 +90,7 @@ class SimulationTest {
                 );
 
 
-        Simulation simulation = new Simulation(positions, directions);
+        Simulation simulation = new Simulation(positions, directions,new RectangularMap(10,10));
         simulation.run();
 
         List<Animal> animals = simulation.getAnimals();
@@ -117,7 +114,7 @@ class SimulationTest {
                 );
 
 
-        Simulation simulation = new Simulation(positions, directions);
+        Simulation simulation = new Simulation(positions, directions,new RectangularMap(10,10));
         simulation.run();
 
         List<Animal> animals = simulation.getAnimals();
@@ -143,7 +140,7 @@ class SimulationTest {
                 );
 
 
-        Simulation simulation = new Simulation(positions, directions);
+        Simulation simulation = new Simulation(positions, directions,new RectangularMap(10,10));
         simulation.run();
 
         List<Animal> animals = simulation.getAnimals();
@@ -170,7 +167,7 @@ class SimulationTest {
                 );
 
 
-        Simulation simulation = new Simulation(positions, directions);
+        Simulation simulation = new Simulation(positions, directions,new RectangularMap(10,10));
         simulation.run();
 
         List<Animal> animals = simulation.getAnimals();
@@ -193,7 +190,7 @@ class SimulationTest {
                 );
 
 
-        Simulation simulation = new Simulation(positions, directions);
+        Simulation simulation = new Simulation(positions, directions,new RectangularMap(10,10));
         simulation.run();
 
         List<Animal> animals = simulation.getAnimals();
@@ -212,7 +209,7 @@ class SimulationTest {
 
         List<Vector2d> positions = List.of(new Vector2d(0, 0));
 
-        Simulation simulation = new Simulation(positions, directions);
+        Simulation simulation = new Simulation(positions, directions,new RectangularMap(10,10));
         simulation.run();
 
         assertEquals(directions, simulation.getMoves());

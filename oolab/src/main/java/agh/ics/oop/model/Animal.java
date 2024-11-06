@@ -23,7 +23,7 @@ public class Animal {
 
     @Override
     public String toString() {
-        return " [orientation=" + orientation + ", location=" + location + "]";
+        return this.orientation.toString();
     }
 
     public Vector2d getLocation() {
@@ -36,7 +36,7 @@ public class Animal {
 
     }
 
-    public void move(MoveDirection direction){
+    public void move(MoveDirection direction,MoveValidator validator){
 
         switch (direction){
 
@@ -44,13 +44,13 @@ public class Animal {
             case RIGHT -> this.orientation = this.orientation.next();
             case BACKWARD ->{
                 Vector2d newLocation = this.location.subtract(this.orientation.toUnitVector());
-                if (newLocation.getX() < 5 && newLocation.getY() > -1 && newLocation.getY() < 5 && newLocation.getX() > -1){
+                if (validator.canMoveTo(newLocation)){
                     location = newLocation;
                 }
             }
             case FORWARD ->{
                 Vector2d newLocation = this.location.add(this.orientation.toUnitVector());
-                if (newLocation.getX() < 5 && newLocation.getY() > -1 && newLocation.getY() < 5 && newLocation.getX() > -1){
+                if (validator.canMoveTo(newLocation)){
                     location = newLocation;
                 }
 
