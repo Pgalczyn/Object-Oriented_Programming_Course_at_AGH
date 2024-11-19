@@ -7,11 +7,10 @@ import java.util.*;
 import static java.lang.Math.sqrt;
 
 
-public  class GrassField implements WorldMap{
+public  class GrassField extends AbstractWorldMap{
+
 
     private final int numberOfGrassFields;
-    public Map<Vector2d,Grass> grassMap = new HashMap<>();
-    public final Map<Vector2d, Animal> animals = new HashMap<>();
     public  final Vector2d lowerBound = new Vector2d(0,0);
     public GrassField(int numberOfGrassFields) {
         this.numberOfGrassFields = numberOfGrassFields;
@@ -39,39 +38,6 @@ public  class GrassField implements WorldMap{
         }
     }
 
-
-
-
-    @Override
-    public boolean place(Animal animal) {
-
-        if(canMoveTo(animal.getLocation())){
-            animals.put(animal.getLocation(), animal);
-            return true;
-        }
-        return false;
-
-    }
-
-    @Override
-    public void move(Animal animal, MoveDirection direction) {
-
-        if (animals.containsValue(animal)) {
-
-            Vector2d location = animal.getLocation();
-            animal.move(direction,this);
-            animals.remove(location);
-            animals.put(animal.getLocation(), animal);
-
-        }
-
-    }
-
-    @Override
-    public boolean isOccupied(Vector2d position) {
-        return objectAt(position) != null;
-    }
-
     @Override
     public WorldElement objectAt(Vector2d position) {
         if (animals.get(position) != null) return animals.get(position);
@@ -88,6 +54,7 @@ public  class GrassField implements WorldMap{
 
     @Override
     public String toString() {
+
         Vector2d lowLeft = new Vector2d(Integer.MAX_VALUE, Integer.MAX_VALUE);
         Vector2d upperRight = new Vector2d(0, 0);
 
@@ -107,5 +74,10 @@ public  class GrassField implements WorldMap{
 
     }
 
-
+    @Override
+    public Collection<WorldElement> getElements() {
+        List<WorldElement> elements = (List<WorldElement>) super.getElements();
+        elements.addAll(grassMap.values());
+        return elements;
+    }
 }

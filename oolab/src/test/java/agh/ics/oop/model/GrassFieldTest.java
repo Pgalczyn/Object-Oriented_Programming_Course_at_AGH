@@ -2,6 +2,8 @@ package agh.ics.oop.model;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class GrassFieldTest {
@@ -68,7 +70,7 @@ class GrassFieldTest {
         animal2.move(MoveDirection.FORWARD,map);
         animal2.move(MoveDirection.FORWARD,map);
 
-        assertEquals(new Vector2d(9,9), animal2.getLocation());
+        assertEquals(new Vector2d(9,13), animal2.getLocation());
     }
 
     @Test
@@ -137,6 +139,26 @@ class GrassFieldTest {
         assertFalse(map.canMoveTo(new Vector2d(-1,-1)));
 
 
+    }
+
+    @Test
+    public void getElementsTest() {
+        GrassField map = new GrassField(4);
+        Animal animal1 = new Animal(new Vector2d(1, 1));
+        Animal animal2 = new Animal(new Vector2d(2, 2));
+        Grass grass1 = new Grass(new Vector2d(3, 3));
+        Grass grass2 = new Grass(new Vector2d(4, 4));
+
+        map.place(animal1);
+        map.place(animal2);
+        map.grassMap.put(grass1.getLocation(), grass1);
+        map.grassMap.put(grass2.getLocation(), grass2);
+
+
+        assertTrue(map.getElements().contains(animal1), "The map should contain the first animal");
+        assertTrue(map.getElements().contains(animal2), "The map should contain the second animal");
+        assertTrue(map.getElements().contains(grass1), "The map should contain the first grass");
+        assertTrue(map.getElements().contains(grass2), "The map should contain the second grass");
     }
 
 }
