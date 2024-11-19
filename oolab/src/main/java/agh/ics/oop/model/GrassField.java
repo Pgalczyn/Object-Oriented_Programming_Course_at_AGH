@@ -11,7 +11,7 @@ public  class GrassField implements WorldMap{
 
     private final int numberOfGrassFields;
     public Map<Vector2d,Grass> grassMap = new HashMap<>();
-    private final Map<Vector2d, Animal> animals = new HashMap<>();
+    public final Map<Vector2d, Animal> animals = new HashMap<>();
     public  final Vector2d lowerBound = new Vector2d(0,0);
     public GrassField(int numberOfGrassFields) {
         this.numberOfGrassFields = numberOfGrassFields;
@@ -106,4 +106,6 @@ public  class GrassField implements WorldMap{
         return map.draw(lowLeft, upperRight);
 
     }
+
+
 }
