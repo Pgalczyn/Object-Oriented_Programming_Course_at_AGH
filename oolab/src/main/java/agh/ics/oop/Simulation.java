@@ -25,6 +25,7 @@ public class Simulation {
                 animals.add(animal);
             }
         }
+
     }
 
     public List<MoveDirection> getMoves() {
