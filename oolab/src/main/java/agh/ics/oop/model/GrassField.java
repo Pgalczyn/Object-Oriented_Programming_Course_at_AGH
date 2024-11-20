@@ -12,6 +12,7 @@ public  class GrassField extends AbstractWorldMap{
 
     private final int numberOfGrassFields;
     public  final Vector2d lowerBound = new Vector2d(0,0);
+    public Map<Vector2d,Grass> grassMap = new HashMap<>();
     public GrassField(int numberOfGrassFields) {
         this.numberOfGrassFields = numberOfGrassFields;
 

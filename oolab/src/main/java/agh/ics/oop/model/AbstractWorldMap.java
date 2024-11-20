@@ -8,8 +8,8 @@ import java.util.Map;
 public abstract class AbstractWorldMap implements WorldMap {
 
 
-    public Map<Vector2d,Animal> animals = new HashMap<Vector2d,Animal>();
-    public Map<Vector2d,Grass> grassMap = new HashMap<>();
+    protected Map<Vector2d,Animal> animals = new HashMap<Vector2d,Animal>();
+
 
     public boolean place(Animal animal) {
 
