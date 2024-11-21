@@ -12,7 +12,10 @@ public class OptionsParser {
         List<MoveDirection> moves = new ArrayList<MoveDirection>();
 
         for(String arg : args) {
-            try {
+
+                if (arg.isEmpty()) {
+                    throw new IllegalArgumentException(" is not legal move specification");
+                }
                 switch (arg) {
 
                     case "f":
@@ -30,12 +33,7 @@ public class OptionsParser {
                     default:
                         throw new IllegalArgumentException(arg + " is not legal move specification");
 
-
                 }
-
-            } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
-            }
         }
         return moves;
     }

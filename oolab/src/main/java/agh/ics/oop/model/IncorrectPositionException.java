@@ -9,7 +9,3 @@ public class IncorrectPositionException extends Exception {
         this.position = position;
     }
 }
-
-
-
-// popraw mapa od -int do int trawa jest losowana tylko od 0 do int ale zwirzaki mogą chodzić jak chcą

@@ -49,7 +49,7 @@ public  class GrassField extends AbstractWorldMap{
     @Override
     public boolean canMoveTo(Vector2d position) {
 
-        return position.follows(lowerBound)  && !(objectAt(position) instanceof Animal);
+        return position.follows(new Vector2d(-Integer.MAX_VALUE,-Integer.MAX_VALUE)) && position.precedes(new Vector2d(Integer.MAX_VALUE,Integer.MAX_VALUE))  && !(objectAt(position) instanceof Animal);
     }
 
 

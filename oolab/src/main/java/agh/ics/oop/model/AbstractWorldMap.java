@@ -11,13 +11,13 @@ public abstract class AbstractWorldMap implements WorldMap {
     protected Map<Vector2d,Animal> animals = new HashMap<Vector2d,Animal>();
 
 
-    public boolean place(Animal animal) {
+    public void place(Animal animal) throws IncorrectPositionException{
 
         if(canMoveTo(animal.getLocation())){
             animals.put(animal.getLocation(), animal);
-            return true;
+
         }
-        return false;
+        else throw new IncorrectPositionException(animal.getLocation());
 
     }
     public void move(Animal animal, MoveDirection direction) {
