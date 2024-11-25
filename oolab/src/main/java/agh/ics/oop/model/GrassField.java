@@ -1,6 +1,6 @@
 package agh.ics.oop.model;
 
-import agh.ics.oop.model.util.MapVisualizer;
+import agh.ics.oop.model.util.Boundary;
 
 import java.util.*;
 
@@ -11,7 +11,6 @@ public  class GrassField extends AbstractWorldMap{
 
 
     private final int numberOfGrassFields;
-    public  final Vector2d lowerBound = new Vector2d(0,0);
     public Map<Vector2d,Grass> grassMap = new HashMap<>();
     public GrassField(int numberOfGrassFields) {
         this.numberOfGrassFields = numberOfGrassFields;
@@ -53,16 +52,33 @@ public  class GrassField extends AbstractWorldMap{
     }
 
 
+//    @Override
+//    public String toString() {
+//
+//
+//
+//        MapVisualizer map = new MapVisualizer(this);
+//        return map.draw(lowLeft, upperRight);
+//
+//    }
+
     @Override
-    public String toString() {
+    public Collection<WorldElement> getElements() {
+        List<WorldElement> elements = (List<WorldElement>) super.getElements();
+        elements.addAll(grassMap.values());
+        return elements;
+    }
+
+    @Override
+    public Boundary getCurrentBounds() {
 
         Vector2d lowLeft = new Vector2d(Integer.MAX_VALUE, Integer.MAX_VALUE);
-        Vector2d upperRight = new Vector2d(0, 0);
+        Vector2d upperRight = new Vector2d(-Integer.MAX_VALUE,-Integer.MAX_VALUE);
 
         for (Vector2d location : animals.keySet()) {
 
             lowLeft = lowLeft.lowerLeft(location);
-             upperRight = upperRight.upperRight(location);
+            upperRight = upperRight.upperRight(location);
         }
 
         for (Vector2d location : grassMap.keySet()) {
@@ -70,15 +86,6 @@ public  class GrassField extends AbstractWorldMap{
             upperRight = upperRight.upperRight(location);
         }
 
-        MapVisualizer map = new MapVisualizer(this);
-        return map.draw(lowLeft, upperRight);
-
-    }
-
-    @Override
-    public Collection<WorldElement> getElements() {
-        List<WorldElement> elements = (List<WorldElement>) super.getElements();
-        elements.addAll(grassMap.values());
-        return elements;
+        return new Boundary(lowLeft, upperRight);
     }
 }

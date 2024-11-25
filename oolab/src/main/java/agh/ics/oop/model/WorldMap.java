@@ -1,6 +1,7 @@
 package agh.ics.oop.model;
 
-import java.awt.*;
+import agh.ics.oop.model.util.Boundary;
+
 import java.util.Collection;
 
 /**
@@ -44,4 +45,6 @@ public interface WorldMap extends MoveValidator {
     WorldElement objectAt(Vector2d position);
 
     Collection<WorldElement> getElements();
+
+    Boundary getCurrentBounds();
 }

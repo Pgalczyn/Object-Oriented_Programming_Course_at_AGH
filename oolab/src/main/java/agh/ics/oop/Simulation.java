@@ -46,7 +46,7 @@ public class Simulation {
             map.move(animals.get(counter % numberOfAnimals), movee);
 
             counter++;
-            System.out.println(map);
+           // System.out.println(map);
         }
 
     }
