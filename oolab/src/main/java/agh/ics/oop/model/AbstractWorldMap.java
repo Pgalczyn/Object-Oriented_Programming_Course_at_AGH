@@ -1,23 +1,37 @@
 package agh.ics.oop.model;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import agh.ics.oop.model.util.Boundary;
+import agh.ics.oop.model.util.MapVisualizer;
+
+import java.util.*;
 
 public abstract class AbstractWorldMap implements WorldMap {
 
+    protected MapVisualizer map = new MapVisualizer(this);
+    protected Map<Vector2d,Animal> animals = new HashMap<Vector2d,Animal>();
+    protected final List<MapChangeListener> listeners = new ArrayList<>();
 
-    public Map<Vector2d,Animal> animals = new HashMap<Vector2d,Animal>();
-    public Map<Vector2d,Grass> grassMap = new HashMap<>();
+    public void addMapChangeListener(MapChangeListener listener) {
+        listeners.add(listener);
+    }
+    public void removeMapChangeListener(MapChangeListener observer) {
+        listeners.remove(observer);
+    }
 
-    public boolean place(Animal animal) {
+    public void notifyMapChanged(String string){
+        for(MapChangeListener listener : listeners){
+            listener.mapChanged(this,string);
+        }
+    }
+
+
+    public void place(Animal animal) throws IncorrectPositionException{
 
         if(canMoveTo(animal.getLocation())){
             animals.put(animal.getLocation(), animal);
-            return true;
+            notifyMapChanged("zmieniona pozycja zwierzaka"+ animal.getLocation());
         }
-        return false;
+        else throw new IncorrectPositionException(animal.getLocation());
 
     }
     public void move(Animal animal, MoveDirection direction) {
@@ -28,7 +42,7 @@ public abstract class AbstractWorldMap implements WorldMap {
             animal.move(direction,this);
             animals.remove(location);
             animals.put(animal.getLocation(), animal);
-
+            notifyMapChanged("zmieniona pozycja zwierzaka"+ animal.getLocation());
         }
 
     }
@@ -45,4 +59,13 @@ public abstract class AbstractWorldMap implements WorldMap {
         return elements;
     }
 
+    public abstract Boundary getCurrentBounds();
+
+
+    @Override
+    public String toString() {
+
+        return map.draw(this.getCurrentBounds().lowLeftBoundary(), this.getCurrentBounds().highRightBoundary());
+
+    }
 }

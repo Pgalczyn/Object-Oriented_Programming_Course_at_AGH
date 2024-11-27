@@ -7,14 +7,17 @@ import java.util.List;
 public class World {
 
     public static void main(String[] args) {
-
+    try {
         List<MoveDirection> directions = OptionsParser.parse(args);
-        List<Vector2d> positions = List.of(new Vector2d(2,2), new Vector2d(9,9));
-        WorldMap map = new GrassField(10);
-
-        Simulation simulation = new Simulation(positions, directions,map);
+        List<Vector2d> positions = List.of(new Vector2d(2, 2), new Vector2d(2, 4));
+        AbstractWorldMap map = new GrassField(10);
+        map.addMapChangeListener(new ConsoleMapDisplay());
+        Simulation simulation = new Simulation(positions, directions, map);
         simulation.run();
-
+    }
+    catch (IllegalArgumentException e) {
+        e.printStackTrace();
+    }
     }
 
     public static void run(List<MoveDirection> directions) {

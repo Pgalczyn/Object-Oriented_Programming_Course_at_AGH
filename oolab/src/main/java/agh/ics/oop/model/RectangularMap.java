@@ -1,10 +1,8 @@
 package agh.ics.oop.model;
 
-import agh.ics.oop.model.util.MapVisualizer;
+import agh.ics.oop.model.util.Boundary;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 public class RectangularMap extends AbstractWorldMap {
 
@@ -27,15 +25,20 @@ public class RectangularMap extends AbstractWorldMap {
         return position.precedes(new Vector2d(width, height)) && position.follows(new Vector2d(0,0)) && !isOccupied(position);
     }
 
-    @Override
-    public String toString() {
-        MapVisualizer mapa = new MapVisualizer(this);
-        return mapa.draw(new Vector2d(0,0),new Vector2d(width,height));
-
-    }
+//    @Override
+//    public String toString() {
+//        MapVisualizer mapa = new MapVisualizer(this);
+//        return mapa.draw(new Vector2d(0,0),new Vector2d(width,height));
+//
+//    }
 
     @Override
     public Collection<WorldElement> getElements() {
         return super.getElements();
+    }
+
+    @Override
+    public Boundary getCurrentBounds() {
+        return new Boundary(new Vector2d(0,0),new Vector2d(width,height));
     }
 }

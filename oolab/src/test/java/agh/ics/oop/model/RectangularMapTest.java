@@ -12,22 +12,26 @@ class RectangularMapTest {
     RectangularMap map = new RectangularMap(10,10);
 
     @Test
-    public void placeTest() {
+    public void placeTest() throws InterruptedException {
 
         Animal animal = new Animal(new Vector2d(1,1));
         Animal animal2 = new Animal(new Vector2d(5,5));
 
         map.animals.put(animal.getLocation(),animal);
         map.animals.put(animal2.getLocation(),animal2);
+        assertDoesNotThrow(() -> map.place(new Animal(new Vector2d(2,5))));
+        assertDoesNotThrow(() -> map.place(new Animal(new Vector2d(1,5))));
 
-        assertTrue(map.place(new Animal(new Vector2d(2,5))));
-        assertTrue(map.place(new Animal(new Vector2d(1,5))));
-        assertFalse(map.place(new Animal(new Vector2d(1,1))));
-        assertFalse(map.place(new Animal(new Vector2d(5,5))));
+        IncorrectPositionException exception1 = assertThrows(IncorrectPositionException.class, () -> map.place(new Animal(new Vector2d(1,1))));
+        IncorrectPositionException exception2 = assertThrows(IncorrectPositionException.class, () -> map.place(new Animal(new Vector2d(5,5))));
+
+        assertEquals(("Position" + "(" + animal.getLocation().getX() + "," + animal.getLocation().getY() + ")" + "is not correct"),exception1.getMessage());
+        assertEquals(("Position" + "(" + animal2.getLocation().getX() + "," + animal2.getLocation().getY() + ")" + "is not correct"),exception2.getMessage());
+
     }
 
     @Test
-    public void moveTest() {
+    public void moveTest() throws IncorrectPositionException {
         Animal animal = new Animal(new Vector2d(2,1));
         Animal animal1 = new Animal(new Vector2d(3,3));
         Animal animal2 = new Animal(new Vector2d(9,8));
@@ -58,7 +62,7 @@ class RectangularMapTest {
     }
 
     @Test
-    public void isOcuupiedTest(){
+    public void isOcuupiedTest() throws IncorrectPositionException{
 
         Animal animal = new Animal(new Vector2d(2,1));
         Animal animal1 = new Animal(new Vector2d(3,3));
@@ -77,7 +81,7 @@ class RectangularMapTest {
     }
 
     @Test
-    public void objectAtTest(){
+    public void objectAtTest() throws IncorrectPositionException{
 
         Animal animal = new Animal(new Vector2d(2,1));
         Animal animal1 = new Animal(new Vector2d(3,3));
@@ -94,7 +98,7 @@ class RectangularMapTest {
     }
 
     @Test
-    public void canMovetoTest(){
+    public void canMovetoTest() throws IncorrectPositionException{
 
         Animal animal = new Animal(new Vector2d(2,1));
         Animal animal1 = new Animal(new Vector2d(3,3));
