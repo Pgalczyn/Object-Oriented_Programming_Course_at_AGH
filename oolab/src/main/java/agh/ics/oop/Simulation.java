@@ -40,7 +40,7 @@ public class Simulation {
 
         int numberOfAnimals = animals.size();
         int counter = 0;
-        System.out.println(map);
+        //System.out.println(map);
         for(MoveDirection movee : moves) {
 
             map.move(animals.get(counter % numberOfAnimals), movee);
