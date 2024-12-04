@@ -10,6 +10,11 @@ public abstract class AbstractWorldMap implements WorldMap {
     protected MapVisualizer map = new MapVisualizer(this);
     protected Map<Vector2d,Animal> animals = new HashMap<Vector2d,Animal>();
     protected final List<MapChangeListener> listeners = new ArrayList<>();
+    protected  int mapId;
+
+    public AbstractWorldMap(int mapId) {
+        this.mapId = mapId;
+    }
 
     public void addMapChangeListener(MapChangeListener listener) {
         listeners.add(listener);
@@ -67,5 +72,10 @@ public abstract class AbstractWorldMap implements WorldMap {
 
         return map.draw(this.getCurrentBounds().lowLeftBoundary(), this.getCurrentBounds().highRightBoundary());
 
+    }
+
+    @Override
+    public int getId() {
+        return this.mapId;
     }
 }

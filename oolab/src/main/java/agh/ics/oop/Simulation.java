@@ -5,7 +5,7 @@ import agh.ics.oop.model.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Simulation {
+public class Simulation implements Runnable {
 
     private final List<Animal> animals;
     private final List<MoveDirection> moves;
@@ -40,7 +40,7 @@ public class Simulation {
 
         int numberOfAnimals = animals.size();
         int counter = 0;
-        System.out.println(map);
+        //System.out.println(map);
         for(MoveDirection movee : moves) {
 
             map.move(animals.get(counter % numberOfAnimals), movee);

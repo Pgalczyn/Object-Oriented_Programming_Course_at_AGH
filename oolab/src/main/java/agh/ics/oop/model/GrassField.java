@@ -12,7 +12,8 @@ public  class GrassField extends AbstractWorldMap{
 
     private final int numberOfGrassFields;
     public Map<Vector2d,Grass> grassMap = new HashMap<>();
-    public GrassField(int numberOfGrassFields) {
+    public GrassField(int numberOfGrassFields,int mapId) {
+        super(mapId);
         this.numberOfGrassFields = numberOfGrassFields;
 
         Random rand = new Random();
