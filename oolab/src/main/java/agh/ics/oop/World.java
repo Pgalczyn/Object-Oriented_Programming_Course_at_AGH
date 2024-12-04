@@ -1,6 +1,7 @@
 package agh.ics.oop;
 
 import agh.ics.oop.model.*;
+import javafx.application.Application;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,10 @@ public class World {
 
         SimulationEngine engine = new SimulationEngine(simulations);
         engine.runAsync();
+
+        Application.launch(SimulationApp.class, args);
+
+
         try {
             engine.awaitSimulationsEnd();
         } catch (InterruptedException e) {
