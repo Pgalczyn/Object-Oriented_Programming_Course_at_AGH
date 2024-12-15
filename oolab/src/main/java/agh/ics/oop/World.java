@@ -1,6 +1,7 @@
 package agh.ics.oop;
 
 import agh.ics.oop.model.*;
+import agh.ics.oop.presenter.SimulationPresenter;
 import javafx.application.Application;
 
 import java.util.ArrayList;
@@ -10,35 +11,36 @@ public class World {
 
     public static void main(String[] args) {
     try {
-        List<MoveDirection> directions = OptionsParser.parse(args);
-        List<Vector2d> positions = List.of(new Vector2d(2, 2), new Vector2d(2, 9));
+       // List<MoveDirection> directions = OptionsParser.parse(args);
+        //List<Vector2d> positions = List.of(new Vector2d(2, 2), new Vector2d(2, 9));
         //AbstractWorldMap map = new GrassField(10,1);
-        AbstractWorldMap map1 = new RectangularMap(10,10,2);
+        //AbstractWorldMap map1 = new RectangularMap(10,10,2);
 
-        map1.addMapChangeListener(new ConsoleMapDisplay());
-        //Simulation simulation = new Simulation(positions, directions, map);
+        //map1.addMapChangeListener(new ConsoleMapDisplay());
+        //map1.addMapChangeListener(new SimulationPresenter());
+        //Simulation simulation = new Simulation(   positions, directions, map);
         //simulation.run();
-        List<Simulation> simulations = new ArrayList<>();
+        //List<Simulation> simulations = new ArrayList<>();
 //        simulations.add(new Simulation(positions, directions, map));
-//        simulations.add(new Simulation(positions, directions, map));
-        for(int i = 0; i < 100; i++){
-            AbstractWorldMap map = new GrassField(10,i);
-            map.addMapChangeListener(new ConsoleMapDisplay());
-            simulations.add(new Simulation(positions, directions, map));
-
-        }
-
-        SimulationEngine engine = new SimulationEngine(simulations);
-        engine.runAsync();
+////        simulations.add(new Simulation(positions, directions, map));
+//        for(int i = 0; i < 100; i++){
+//            AbstractWorldMap map = new GrassField(10,i);
+//            map.addMapChangeListener(new ConsoleMapDisplay());
+//            simulations.add(new Simulation(positions, directions, map));
+//
+//        }
+//
+//        SimulationEngine engine = new SimulationEngine(simulations);
+//        engine.runAsync();
 
         Application.launch(SimulationApp.class, args);
 
 
-        try {
-            engine.awaitSimulationsEnd();
-        } catch (InterruptedException e) {
-           e.printStackTrace();
-        }
+//        try {
+//            engine.awaitSimulationsEnd();
+//        } catch (InterruptedException e) {
+//           e.printStackTrace();
+//        }
     }
     catch (IllegalArgumentException e) {
         e.printStackTrace();
